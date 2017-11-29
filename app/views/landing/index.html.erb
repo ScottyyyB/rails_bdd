@@ -1,0 +1,11 @@
+<h1>A breaking news item</h1>
+<p>Some really breaking action</p>
+<ul>
+  <% @articles.each do |article| %>
+    <li>
+      <%= article.title %><br />
+      <%= article.content %>
+    </li>
+  <% end %>
+</ul>
+<a href='articles/new'>new article</a>
