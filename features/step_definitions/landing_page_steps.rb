@@ -28,3 +28,15 @@ Then("I should be on {string} page") do |article_title|
   article = Article.find_by(title: article_title)
   expect(page.current_path).to eq "/articles/#{article.id}"
 end
+
+When("I fill in {string} for {string} with {string}") do |field, article_title, value|
+  article = Article.find_by(title: article)
+  within("#article-#{article.id}") do
+    fill_in field, with: value
+  end
+end
+
+When("I click {string} on {string}") do |element, article|
+  article = Article.find_by(title: article)
+  within("#article-#{article.id}") {click_button element}
+end

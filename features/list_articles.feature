@@ -5,7 +5,7 @@ Feature: List articles on landing pages
 
   Background:
     Given the following articles exists
-      | title                | content                          |
+      | title                | content                          | 
       | A breaking news item | Some really breaking action      |
       | Learn Rails 5        | Build awesome rails applications |
 
