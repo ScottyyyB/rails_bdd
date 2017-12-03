@@ -12,20 +12,11 @@ Given("the following articles exists") do |table|
   end
 end
 
-# When("I click {string} link") do |new_article|
-#   click_link new_article
-# end
-
 When("I click {string} button or link") do |element|
   click_link_or_button element
 end
 
 Then("I should be redirected to the {string} page") do |page_name|
-  expect(page.current_path).to eq page_path_from(page_name)
-end
-
-Then("I should be redirected to the {string} page for {string}") do |page_name, article|
-  @article = find_article(article)
   expect(page.current_path).to eq page_path_from(page_name)
 end
 

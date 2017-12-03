@@ -9,7 +9,7 @@
 <%= form_for [@article, @comment] do |f| %>
   <%= f.label :body %>
   <%= f.text_area :body %>
-  <%= f.label 'Email (Optional)' %>
+  <%= f.label :email %>
   <%= f.text_field :email %>
   <%= f.submit %>
 <% end %>
