@@ -1,11 +1,26 @@
 <h1>A breaking news item</h1>
 <p>Some really breaking action</p>
-<ul>
+<%= link_to 'new article', new_article_path %>
+
   <% @articles.each do |article| %>
-    <li>
-      <%= article.title %><br />
-      <%= article.content %>
-    </li>
+    <div id="article-<%= article.id %>">
+      <ul>
+        <li>
+          <%= article.title %><br />
+          <%= article.content %>
+        </li>
+      </ul>
+      <h3> Comments </h3>
+      <% unless article.comments.empty? %>
+        <% article.comments.each do |comment| %>
+        <% if comment.email? %>
+          <h4>By: <%= comment.email %> </h4>
+        <% end %>
+        <p>
+          <%= comment.body %>
+        </p>
+        <% end %>
+      <% end %>
+      <%= link_to 'Add Comment', new_article_comment_path(article) %>
+    </div>
   <% end %>
-</ul>
-<a href='articles/new'>new article</a>

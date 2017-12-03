@@ -6,7 +6,9 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @comment = Comment.new(article: @article)
     @article.save ? article_created : (render :new)
+
   end
 
   def show
@@ -21,6 +23,6 @@ class ArticlesController < ApplicationController
 
   def article_created
     flash[:notice] = "Article was successfully created."
-    redirect_to @article
+    redirect_to root_path
   end
 end

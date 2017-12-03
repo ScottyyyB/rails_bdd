@@ -44,6 +44,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'launchy'
+  gem 'validates_email_format_of'
 end
 
 group :development do

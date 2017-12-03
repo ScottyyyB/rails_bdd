@@ -12,31 +12,38 @@ Given("the following articles exists") do |table|
   end
 end
 
-When("I click {string} link") do |new_article|
-  click_link new_article
+# When("I click {string} link") do |new_article|
+#   click_link new_article
+# end
+
+When("I click {string} button or link") do |element|
+  click_link_or_button element
 end
 
-When("I fill in {string} with {string}") do |field, value|
-  fill_in field, with: value
+Then("I should be redirected to the {string} page") do |page_name|
+  expect(page.current_path).to eq page_path_from(page_name)
 end
 
-When("I click {string} button") do |create_article|
-  click_button create_article
+Then("I should be redirected to the {string} page for {string}") do |page_name, article|
+  @article = find_article(article)
+  expect(page.current_path).to eq page_path_from(page_name)
 end
 
-Then("I should be on {string} page") do |article_title|
-  article = Article.find_by(title: article_title)
-  expect(page.current_path).to eq "/articles/#{article.id}"
+Given("I visit the {string} page") do |page_name|
+  visit page_path_from(page_name)
 end
 
-When("I fill in {string} for {string} with {string}") do |field, article_title, value|
-  article = Article.find_by(title: article)
-  within("#article-#{article.id}") do
-    fill_in field, with: value
+When("I click on {string}") do |element|
+  click_link_or_button element
+end
+
+def page_path_from(page_name)
+  case page_name.downcase
+    when 'landing' then "/"
+    when 'comment' then "/articles/#{@article}/comments/new"
   end
 end
 
-When("I click {string} on {string}") do |element, article|
-  article = Article.find_by(title: article)
-  within("#article-#{article.id}") {click_button element}
+def find_article(article_name)
+  Article.find_by(title: article_name).id
 end
