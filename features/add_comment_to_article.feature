@@ -37,4 +37,4 @@ Feature: Adding Comments
     And I fill in "Body" with "Big Arnold"
     And I fill in "Email" with "hotmale"
     When I click "Create Comment" button or link
-    Then I should see "Email is not valid"
+    Then I should see "Email is invalid"
