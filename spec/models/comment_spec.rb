@@ -1,5 +1,4 @@
 require 'rails_helper'
-require "validates_email_format_of/rspec_matcher"
 
 RSpec.describe Comment, type: :model do
   describe 'DB Table' do
@@ -11,6 +10,6 @@ RSpec.describe Comment, type: :model do
 
   describe 'Validations' do
     it { is_expected.to validate_presence_of :body }
-    it { is_expected.to validate_email_format_of(:email).with_message('is not valid') }
+    it { is_expected.not_to allow_value('hotmale').for :email }
   end
 end
