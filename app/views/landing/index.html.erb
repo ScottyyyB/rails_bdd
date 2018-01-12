@@ -7,7 +7,8 @@
       <ul>
         <li>
           <%= article.title %><br />
-          <%= article.content %>
+          <%= article.content %><br />
+          <%= "Written by #{article.author} at #{Date.strptime("#{Article.first.created_at}", '%Y-%m-%d')}" %>
         </li>
       </ul>
       <h3> Comments </h3>
